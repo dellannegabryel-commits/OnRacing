@@ -7,7 +7,7 @@ Jogo de corrida arcade-sim focado em competição: física inspirada em *Need fo
 ## Visão
 
 - **Sensação de direção:** peso, inércia e derrapagem controlável — drift como ferramenta, não como truque.
-- **Competição acima de tudo:** IA consistente, multiplayer ranqueado, sem catch-up artificial.
+- **Competição acima de tudo:** multiplayer ranqueado, sem catch-up artificial. Single player apenas time trial.
 - **Fidelidade de traçado:** circuitos modelados a partir de layouts reais (Nürburgring, Spa, Suzuka, Monza, Interlagos, Laguna Seca, Bathurst...).
 - **Estética GT:** carros de competição reais/licenciáveis ou inspirados, sem tuning de rua extremo.
 

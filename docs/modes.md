@@ -2,10 +2,7 @@
 
 ## Single player
 
-- **Corrida rápida:** circuito + classe + IA.
-- **Campeonato:** temporada de X corridas, pontuação.
-- **Time trial:** volta rápida, fantasmas, leaderboards.
-- **Drift challenge:** score por derrapagem em setor.
+- **Time trial:** volta rápida, fantasmas, leaderboards offline/online.
 
 ## Multiplayer
 

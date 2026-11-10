@@ -34,7 +34,7 @@ Corrida competitiva com física arcade-sim (referência: NFS Most Wanted / Under
 
 ## 6. IA
 
-- Linha de corrida baseada em spline do circuito; erros simulados por dificuldade.
+- Usada apenas em modos de treino/prática e time trial com fantasmas.
 - Sem rubber-banding; ritmo por classe de carro.
 
 ## 7. Multiplayer
