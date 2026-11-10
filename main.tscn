@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv1qcsx7cf3i2"]
+
+[ext_resource type="Script" uid="uid://ccaoqp60q0xwm" path="res://car.gd" id="1_car"]
+[ext_resource type="Script" uid="uid://cot75rro2vm60" path="res://interlagos_builder.gd" id="2_track"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/vehicle.gd" id="3_vehicle"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/wheel.gd" id="4_wheel"]
+[ext_resource type="Script" path="res://addons/gevp/scripts/vehicle_controllergd.gd" id="5_controller"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat"]
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMat")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 3
+
+[sub_resource type="BoxShape3D" id="ChassisShape"]
+size = Vector3(1.95, 0.9, 4.5)
+
+[sub_resource type="BoxMesh" id="ChassisMesh"]
+size = Vector3(1.95, 0.9, 4.5)
+
+[sub_resource type="CylinderMesh" id="WheelMesh"]
+top_radius = 0.34
+bottom_radius = 0.34
+height = 0.28
+
+[sub_resource type="Curve" id="TorqueCurve"]
+_data = [Vector2(0, 0.75), 0.0, 0.0, 0, 0, Vector2(0.75, 1.0), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Main" type="Node3D" unique_id=1641854919]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1287623289]
+environment = SubResource("Env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1853892009]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 45, 0)
+shadow_enabled = true
+
+[node name="TrackManager" type="Node" parent="." unique_id=254071979]
+script = ExtResource("2_track")
+
+[node name="Car" type="RigidBody3D" parent="." unique_id=551538241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.9, -100)
+mass = 1250.0
+script = ExtResource("1_car")
+torque_curve = SubResource("TorqueCurve")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car" unique_id=1056655443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+shape = SubResource("ChassisShape")
+
+[node name="ChassisVisual" type="MeshInstance3D" parent="Car" unique_id=818884335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+mesh = SubResource("ChassisMesh")
+
+[node name="WheelFL" type="RayCast3D" parent="Car" unique_id=153243526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.22, 1.45)
+script = ExtResource("4_wheel")
+
+[node name="Mesh" type="MeshInstance3D" parent="Car/WheelFL" unique_id=445127157]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.34, 0)
+mesh = SubResource("WheelMesh")
+
+[node name="WheelFR" type="RayCast3D" parent="Car" unique_id=1638540174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.22, 1.45)
+script = ExtResource("4_wheel")
+
+[node name="Mesh" type="MeshInstance3D" parent="Car/WheelFR" unique_id=2110377434]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.34, 0)
+mesh = SubResource("WheelMesh")
+
+[node name="WheelRL" type="RayCast3D" parent="Car" unique_id=1038179745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.22, -1.45)
+script = ExtResource("4_wheel")
+
+[node name="Mesh" type="MeshInstance3D" parent="Car/WheelRL" unique_id=1600055427]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.34, 0)
+mesh = SubResource("WheelMesh")
+
+[node name="WheelRR" type="RayCast3D" parent="Car" unique_id=2136698102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.22, -1.45)
+script = ExtResource("4_wheel")
+
+[node name="Mesh" type="MeshInstance3D" parent="Car/WheelRR" unique_id=528258542]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.34, 0)
+mesh = SubResource("WheelMesh")
+
+[node name="Camera3D" type="Camera3D" parent="Car" unique_id=945062246]
+transform = Transform3D(-1, 0, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, 0, 2.3, -6.2)
+current = true
+
+[node name="CarController" type="Node3D" parent="Car" unique_id=778123401]
+script = ExtResource("5_controller")
+string_brake_input = "brake"
+string_steer_left = "steer_left"
+string_steer_right = "steer_right"
+string_throttle_input = "throttle"
+string_handbrake_input = "handbrake"
