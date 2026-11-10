@@ -26,9 +26,10 @@ Jogo de corrida arcade-sim focado em competição: física inspirada em *Need fo
 - [Carros e classes](docs/cars.md)
 - [Modos de jogo](docs/modes.md)
 
-## Stack (a definir)
+## Stack (candidata)
 
-Engine a escolher: Unreal Engine 5 (Chaos Vehicle) ou Unity (Vehicle Physics Pro). Render: PBR, ciclo dia/noite, clima dinâmico (molhado/seco).
+Engine: **Godot 4** + física **Jolt** (plugin godot-jolt) para handling/colisão mais estável que o Bullet padrão.
+Render: PBR, ciclo dia/noite, clima dinâmico (molhado/seco). Multiplayer: ENet/WebRTC ou relay dedicado. Detalhes em [docs/engine.md](docs/engine.md).
 
 ## Contribuindo
 
